@@ -1,4 +1,7 @@
 
+
+
+
 const { Schema, model } = require('mongoose');
 
 
@@ -10,18 +13,21 @@ const UsuarioSchema = Schema({
     apellido: {
         type: String,
         required: [true, "el apellido no es valido"],
-        unique: true
     },
     email: {
         type: String,
         required: [true, "el email no es valido"],
+        unique: true
     },
     sexo: {
         type: String,
     },
     materias: [{
-        type: Schema.Types.ObjectId, ref: "materia"
-    }]
+        type: Schema.Types.ObjectId, ref: "Materia"
+    }],
+    fullname: {
+        type: String,
+    },
 });
 
 
