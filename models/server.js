@@ -5,11 +5,12 @@ const { dbConection } = require('../database/config');
 
 class Server {
     constructor() {
-        
+
         this.app = express();
         this.port = process.env.PORT;
         this.usuariosPath = '/user';
         this.materiasPath = "/materia"
+        this.semestrePath = '/semestre'
         // conectar a base de datos
         this.conectarDb();
         // middlewars
@@ -18,7 +19,7 @@ class Server {
         this.routes();
     }
 
-    async conectarDb(){
+    async conectarDb() {
         await dbConection()
     }
 
@@ -33,7 +34,8 @@ class Server {
     }
     routes() {
         this.app.use(this.usuariosPath, require('../routes/usuario'))
-        this.app.use(this.materiasPath,  require("../routes/materia" ))
+        this.app.use(this.materiasPath, require("../routes/materia"))
+        this.app.use(this.semestrePath, require("../routes/semestre"))
     }
     listen() {
         this.app.listen(this.port, () => {
